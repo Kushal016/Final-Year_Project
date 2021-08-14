@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;
+
+        }
+
+        th {
+            color: #fff;
+        }
+
+        .table-1 {
+            margin: 120px auto 0 auto;
+            width: 1080px;
+        }
+
+        .heading {
+            width: 500px;
+            text-align: center;
+            margin: 50px auto 0 auto;
+            border-bottom: 2px solid #17a2b8;
+            border-color: #17a2b8;
+        }
+
+
+        .heading h1 {
+            color: #17a2b8;
+            font-size: 300%;
+
+        }
+
+        .winner {
+            font-weight: 60%;
+            color: #17a2b8;
+            padding-top: 30px;
+        }
+    </style>
+    <title>Result</title>
+</head>
+
+<body>
+    <div class="heading">
+        <h1>Welcome to the result</h1>
+    </div>
+    <div class="table-1">
+        <table class="table table-striped">
+            <tr class="bg-info">
+                <th>Area</th>
+                <th>Candidate Name</th>
+                <th>Votes</th>
+            </tr>
+
+            <tbody id="myTable">
+
+            </tbody>
+        </table>
+    </div>
+    <div class="winner" id="winner">
+
+    </div>
+
+    <script>
+
+
+
+
+        var myArray = []
+
+        $.ajax({
+            method: 'GET',
+            url: 'http://127.0.0.1:5000/blockchain/',
+            success: function (response) {
+                console.log(response)
+                myArray = response
+                myArray.sort((a, b) => {
+                    return b.value - a.value;
+                });
+                buildTable(myArray)
+                console.log(myArray)
+                winnerName(myArray)
+            }
+
+        })
+
+
+
+
+        function buildTable(data) {
+            var table = document.getElementById('myTable')
+
+            for (var i = 0; i < data.length; i++) {
+                var row = `<tr>
+							<td> Area-1</td>
+							<td>${data[i].name}</td>
+							<td>${data[i].value}</td>
+					  </tr>`
+                table.innerHTML += row
+
+
+            }
+        }
+        function winnerName(data) {
+            var win = document.getElementById('winner')
+            var temp = ` <h2>
+                        &mdash;&nbsp;${data[0].name} is the winner for Area-1&nbsp;&mdash;
+                        </h2>`
+            win.innerHTML += temp
+        }
+
+    </script>
+
+
+
+
+</body>
+
+</html>

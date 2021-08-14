@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Page</title>
+    <style>
+        .text-center {
+            text-align: center;
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;
+            background-color: #ebe9e9;
+        }
+
+        .row {
+            max-width: 1140px;
+            margin: auto
+        }
+
+        .btn {
+            width: 120px;
+            height: 34px;
+            background: linear-gradient(90deg, #20aae5, #558ffc);
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            outline: none;
+            border: none;
+        }
+
+        .btn:hover {
+            box-shadow: 0 8px 16px #558ffc;
+        }
+
+        .logo {
+            padding-top: 20px;
+            width: 500px;
+            height: 400px;
+            margin: auto;
+
+        }
+
+        .para {
+            margin-bottom: 30px;
+            font-size: 140%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="logo">
+            <img src="/logout-logo.png" alt="logout-logo image">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <div class="para">
+            <p>
+                <bold> Thanks for your valuable vote. Click logout to end the process.</bold>
+            </p>
+        </div>
+        <form action="/logout" method="POST">
+            <button class="btn" type="submit">Log Out</button>
+        </form>
+    </div>
+</body>
+
+</html>
